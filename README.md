@@ -34,6 +34,12 @@ APP_VERSION=0.1.0 script/package_release.sh
 
 This creates `dist/MacTidy.app` and a zipped release artifact in `dist/releases/`.
 
+If macOS blocks the packaged app on first launch after moving it into `/Applications`, clear the quarantine flag:
+
+```bash
+xattr -c /Applications/MacTidy.app
+```
+
 ## Safety
 
 - No sudo, privileged helper, background agent, or permanent delete.
