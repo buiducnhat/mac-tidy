@@ -29,7 +29,7 @@ script/build_and_run.sh --verify
 ## Package A Release
 
 ```bash
-APP_VERSION=0.1.0 script/package_release.sh
+APP_VERSION=0.1.1 script/package_release.sh
 ```
 
 This creates `dist/MacTidy.app` and a zipped release artifact in `dist/releases/`.

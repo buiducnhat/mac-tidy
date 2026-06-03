@@ -5,7 +5,7 @@ MODE="${1:-run}"
 APP_NAME="MacTidy"
 BUNDLE_ID="dev.nhatbui.MacTidy"
 MIN_SYSTEM_VERSION="14.0"
-APP_VERSION="${APP_VERSION:-0.1.0}"
+APP_VERSION="${APP_VERSION:-0.1.1}"
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DIST_DIR="$ROOT_DIR/dist"
