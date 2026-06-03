@@ -10,10 +10,6 @@ struct RootView: View {
         } detail: {
             DetailView(appState: appState)
         }
-        .searchable(text: $appState.brewStore.searchTerm, placement: .toolbar, prompt: "Search formulae and casks")
-        .onSubmit(of: .search) {
-            appState.performHomebrewSearch()
-        }
         .toolbar {
             if appState.selectedDestination.isHomebrew {
                 ToolbarItemGroup {
@@ -41,6 +37,15 @@ struct RootView: View {
                 }
                 .padding()
             }
+        }
+        .sheet(isPresented: Binding(
+            get: { appState.fullDiskAccessStore.isRequestPresented },
+            set: { appState.fullDiskAccessStore.isRequestPresented = $0 }
+        )) {
+            FullDiskAccessRequestView(store: appState.fullDiskAccessStore)
+        }
+        .task {
+            appState.requestFullDiskAccessOnLaunchIfNeeded()
         }
         .buttonBorderShape(.roundedRectangle(radius: 8))
     }

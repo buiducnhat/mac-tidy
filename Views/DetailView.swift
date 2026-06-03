@@ -17,6 +17,8 @@ struct DetailView: View {
                 PurgeView(store: appState.purgeStore)
             case .installers:
                 InstallersView(store: appState.installersStore)
+            case .applications:
+                ApplicationsView(store: appState.applicationsStore)
             case .homebrew, .homebrewDashboard:
                 HomebrewDashboardView(store: appState.brewStore) { destination, packageFilter in
                     appState.navigateToHomebrew(destination, packageFilter: packageFilter)

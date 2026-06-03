@@ -15,6 +15,15 @@
 4. `CleanupStore.cleanSelected()` passes the current selection to `CleanupService`.
 5. `CleanupService` collapses nested selections, refuses protected or invalid paths, and moves accepted items to Finder Trash.
 
+## Applications Flow
+
+1. `AppSceneState` routes `Applications` actions to `ApplicationsStore`.
+2. `ApplicationsStore.scanApplications()` asks `InstalledApplicationScanner` for local `.app` bundles under `/Applications`, `/System/Applications`, and `~/Applications` when present.
+3. Selecting an app asks `ApplicationDataScanner` for a review list containing the app bundle plus conservative user Library matches.
+4. `ApplicationsStore` caches each app's review list after the first detail scan, so returning to the same app does not rescan related data.
+5. Related data candidates are review-only and unselected by default.
+6. `ApplicationsStore.uninstallSelectedItems()` passes selected URLs to `CleanupService`, so app uninstall uses the same Finder Trash and safety refusals as cleanup.
+
 ## Homebrew Flow
 
 1. Homebrew destinations route to `BrewStore`.

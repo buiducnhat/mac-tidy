@@ -5,7 +5,7 @@ dist/*
 
 .agents/
 .codex/
-docs/plans/*
-!docs/plans/archived/
-!docs/plans/archived/**
+docs/.plans/*
+!docs/.plans/archived/
+!docs/.plans/archived/**
 docs/brainstorm/

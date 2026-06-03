@@ -9,7 +9,9 @@ final class AppSceneState {
     var cleanStore = CleanupStore(module: .clean)
     var purgeStore = CleanupStore(module: .purge)
     var installersStore = CleanupStore(module: .installers)
+    var applicationsStore = ApplicationsStore()
     var brewStore = BrewStore(client: BrewClient())
+    var fullDiskAccessStore = FullDiskAccessStore()
 
     var canPerformCleanup: Bool {
         switch selectedDestination {
@@ -19,7 +21,7 @@ final class AppSceneState {
             !purgeStore.selectedItems.isEmpty
         case .installers:
             !installersStore.selectedItems.isEmpty
-        case .dashboard, .analyze, .homebrew, .homebrewDashboard, .homebrewInstalled, .homebrewOutdated, .homebrewSearch, .homebrewTaps, .homebrewUtilities:
+        case .dashboard, .analyze, .applications, .homebrew, .homebrewDashboard, .homebrewInstalled, .homebrewOutdated, .homebrewSearch, .homebrewTaps, .homebrewUtilities:
             false
         }
     }
@@ -34,6 +36,8 @@ final class AppSceneState {
             purgeStore.scan()
         case .installers:
             installersStore.scan()
+        case .applications:
+            applicationsStore.scanApplications()
         case .homebrew, .homebrewDashboard, .homebrewInstalled, .homebrewOutdated, .homebrewSearch, .homebrewTaps:
             Task { await brewStore.refreshAll() }
         case .homebrewUtilities:
@@ -49,7 +53,7 @@ final class AppSceneState {
             purgeStore.cleanSelected()
         case .installers:
             installersStore.cleanSelected()
-        case .dashboard, .analyze, .homebrew, .homebrewDashboard, .homebrewInstalled, .homebrewOutdated, .homebrewSearch, .homebrewTaps, .homebrewUtilities:
+        case .dashboard, .analyze, .applications, .homebrew, .homebrewDashboard, .homebrewInstalled, .homebrewOutdated, .homebrewSearch, .homebrewTaps, .homebrewUtilities:
             break
         }
     }
@@ -61,6 +65,10 @@ final class AppSceneState {
 
     func runHomebrewUpdate() {
         Task { await brewStore.runUtility(.update) }
+    }
+
+    func requestFullDiskAccessOnLaunchIfNeeded() {
+        fullDiskAccessStore.requestOnLaunchIfNeeded()
     }
 
     func navigateToHomebrew(_ destination: SidebarDestination, packageFilter: BrewPackageFilter? = nil) {

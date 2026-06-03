@@ -6,6 +6,11 @@ enum TestRunner {
         do {
             var scanServiceTests = ScanServiceTests()
             try await scanServiceTests.run()
+            var applicationScannerTests = ApplicationScannerTests()
+            try await applicationScannerTests.run()
+            var applicationDataScannerTests = ApplicationDataScannerTests()
+            try await applicationDataScannerTests.run()
+            try FullDiskAccessServiceTests().run()
             try PathRulesTests().run()
             try CleanupRulesTests().run()
             print("MacTidyCoreTests passed")

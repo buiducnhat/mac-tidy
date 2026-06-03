@@ -6,6 +6,7 @@ public enum SidebarDestination: String, CaseIterable, Identifiable {
     case clean
     case purge
     case installers
+    case applications
     case homebrew
     case homebrewDashboard
     case homebrewInstalled
@@ -23,6 +24,7 @@ public enum SidebarDestination: String, CaseIterable, Identifiable {
         case .clean: "Clean"
         case .purge: "Purge"
         case .installers: "Installers"
+        case .applications: "Applications"
         case .homebrew: "Homebrew"
         case .homebrewDashboard: "Overview"
         case .homebrewInstalled: "Installed"
@@ -40,6 +42,7 @@ public enum SidebarDestination: String, CaseIterable, Identifiable {
         case .clean: "Caches"
         case .purge: "Project artifacts"
         case .installers: "Install files"
+        case .applications: "Installed apps"
         case .homebrew: "Packages"
         case .homebrewDashboard: "Brew status"
         case .homebrewInstalled: "Formulae and casks"
@@ -57,6 +60,7 @@ public enum SidebarDestination: String, CaseIterable, Identifiable {
         case .clean: "sparkles"
         case .purge: "shippingbox"
         case .installers: "opticaldiscdrive"
+        case .applications: "app.dashed"
         case .homebrew: "mug"
         case .homebrewDashboard: "mug"
         case .homebrewInstalled: "shippingbox"
@@ -81,7 +85,8 @@ public enum SidebarDestination: String, CaseIterable, Identifiable {
         .analyze,
         .clean,
         .purge,
-        .installers
+        .installers,
+        .applications
     ]
 
     public static let homebrewDestinations: [SidebarDestination] = [

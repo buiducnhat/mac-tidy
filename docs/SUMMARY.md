@@ -1,6 +1,6 @@
 # Documentation Summary
 
-MacTidy is a local-first macOS cleanup utility built with SwiftUI and SwiftPM. It separates UI state from filesystem and Homebrew logic, then packages the app into an unsigned `.app` bundle with a custom script-based workflow.
+MacTidy is a local-first macOS cleanup utility built with SwiftUI and SwiftPM. It separates UI state from filesystem, application inventory, and Homebrew logic, then packages the app into an unsigned `.app` bundle with a custom script-based workflow.
 
 ## Agent Context Guide
 
